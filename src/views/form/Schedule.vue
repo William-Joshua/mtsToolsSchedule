@@ -157,7 +157,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
@@ -209,12 +208,15 @@ export default {
     };
   },
   mounted() {
-    axios
-      .post("/api/Users/GetUserDetailByUserID",{
-          'userID':'ITECH_MTS_ADMIN'
+    this.axios({
+      method: 'post',
+      url: '/api/Users/GetUserDetailByUserID',
+      data: {
+        Account: 'ITECH_MTS_ADMIN'
+        }
       })
       .then(function(response) {
-        alert(response);
+        alert(response.data.InnerUserID);
       })
       .catch(function(error) {
         alert(error);
